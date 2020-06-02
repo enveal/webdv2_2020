@@ -1,6 +1,7 @@
-const {Router}= require('express')
-const commentRoute=Router();
+const { Router } = require('express')
 
-module.exports={
-    commentRoute
+const commentsRoute = Router()
+
+module.exports = {
+  commentsRoute
 }

@@ -25,11 +25,8 @@ function genRandomUsername() {
     const obj = OBJECTS[Math.floor(Math.random() * 7)]
     return `${adj}-${obj}`
 }
-// console.log(genRandomUsername)
-// console.log(genRandomUsername)
-// console.log(genRandomUsername)
-// console.log(genRandomUsername)
-// console.log(genRandomUsername)
+
+
 
 module.exports = {
     genRandomUsername
