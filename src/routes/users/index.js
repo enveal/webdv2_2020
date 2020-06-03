@@ -30,6 +30,7 @@ route.get('/:id', async (req, res) => {
   }
 })
 
+
 route.post('/', async (req, res) => {
   const user = await createAnonUser()
   res.status(201).send(user)
