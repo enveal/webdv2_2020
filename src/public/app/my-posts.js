@@ -1,5 +1,7 @@
-function loadPosts() {
-  $.get('/api/posts', (posts) => {
+function loadMyPosts() {
+  const userId = JSON.parse(window.localStorage.user).id
+
+  $.get(`/api/posts?userId=${userId}`, (posts) => {
     for (let p of posts) {
       $('#posts-container').append(
         $(`

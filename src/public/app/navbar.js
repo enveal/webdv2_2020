@@ -1,3 +1,4 @@
+
 let navlinks = $('.navbar-nav .nav-link')
 
 navlinks.click((ev) => {
