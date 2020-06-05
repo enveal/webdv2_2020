@@ -2,7 +2,9 @@ const { Router } = require('express')
 const {Comments}=require('../../db/models')
 const{createComment}=require('../../controllers/comments')
 
-Router.post("/", async (req, res) => {
+const route = Router()
+
+route.post("/", async (req, res) => {
   try {
     let { user_id, post_id, comment_body } = req.body;
     if (!user_id || !post_id || !comment_body) {
@@ -20,7 +22,7 @@ Router.post("/", async (req, res) => {
   }
 });
 
-Router.get("/:post_id", async (req, res) => {
+route.get("/:post_id", async (req, res) => {
   try {
     let allComments = await Comments.findAll({
       where: {
@@ -35,5 +37,5 @@ Router.get("/:post_id", async (req, res) => {
 });
 
 module.exports = {
-  commentsRoute
+  commentsRoute:route
 }
