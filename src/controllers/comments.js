@@ -1,33 +1,37 @@
-const { Users, Comments, Posts } = require("../db/models")
+const { Users, Posts, Comments} = require('../db/models')
 
-async function createComment(user_id, post_id, comment_body) {
-    try {
-      let user = await Users.findOne({
-        where: {
-          user_id,
-        },
-      });
-      let post = await Posts.findOne({
-        where: {
-          post_id,
-        },
-      });
-    
-      if (user && post) {
-        return await Comments.create({
-          comment_body,
-          userUserId: user_id,
-          postPostId: post_id,
-        });
-      } else {
-        console.log("err");
-        return null;
-      }
-    } catch (e) {
-      console.log(e);
-      return null;
-    }
-  }
-  module.exports = {
-    createComment,
-  };
+async function addComment( userId, title, body, postId ){
+    const comment = await Comments.create({
+        userId,
+        title,
+        body,
+        postId
+    })
+    return comment
+}
+
+async function commentOfUser( id ){
+    let where = {}
+    if(id.userId){ where.userId = id.userId}
+    const userComments = await Comments.findAll({
+        include : [ Users , Posts],
+        where 
+    })
+
+    return userComments
+}
+
+async function commentOfPost( id ){
+    const postComments = await Comments.findAll({
+        include : [ Users, Posts],
+        where : { postId : id}
+    })
+
+    return postComments
+}
+
+module.exports = {
+    addComment,
+    commentOfUser,
+    commentOfPost
+}

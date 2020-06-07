@@ -4,6 +4,7 @@ $('#write-btn').click(() => {
   const body = $('#p-body').val()
 
   $.post('/api/posts', { userId, title, body }, (data) => {
+    window.alert('Your post is added')
     $('#content').load('/components/my-posts.html')
     $('.nav-item .active').removeClass('active')
     $("[data-components='my-posts']").addClass('active')

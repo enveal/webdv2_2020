@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container my-2">
+        <h1 class="h1 text-center">Write Comment</h1>
+      
+        <!-- Comment Post form -->
+        <form>
+          <div class="form-group">
+            <label for="c-title">Comment Title</label>
+            <input type="text"
+              class="form-control form-control-lg"
+              id="c-title"
+              placeholder="What is on your mind ?"
+              rows="3"
+            ></input>
+          </div>
+          <div class="form-group">
+            <label for="c-body">Comment Body</label>
+            <textarea
+              class="form-control form-control-sm"
+              id="c-body"
+              placeholder="Tell us more about it"
+              rows="4"
+            ></textarea>
+          </div>
+          <button type="submit" id="comment-btn" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+</body>
+<script src="../app/all-posts.js"></script>
+<script>
+  loadPosts()
+</script>
+</html>

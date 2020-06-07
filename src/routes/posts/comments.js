@@ -1,41 +1,44 @@
 const { Router } = require('express')
-const {Comments}=require('../../db/models')
-const{createComment}=require('../../controllers/comments')
+
+const { commentOfPost, commentOfUser, addComment} = require('../../controllers/comments')
 
 const route = Router()
 
-route.post("/", async (req, res) => {
-  try {
-    let { user_id, post_id, comment_body } = req.body;
-    if (!user_id || !post_id || !comment_body) {
-      res.status(403).send("Bad Request");
-    } else {
-      let comment = await createComment(user_id, post_id, comment_body);
-      if (comment) {
-        res.status(201).send(comment);
-      } else {
-        res.status(501).send("not created Please try again");
-      }
-    }
-  } catch (e) {
-    res.status(501).send(e);
-  }
-});
+route.get('/users', async( req, res) => {
+  
+  // if(isNaN(parseInt(req.query))){
+  //  return res.status(400).send({
+  //    error : "need userId to to find the comment"
+  //  })
+  // }
+  const userComment = await commentOfUser(req.query)
+  res.status(200).send(userComment)
+})
 
-route.get("/:post_id", async (req, res) => {
-  try {
-    let allComments = await Comments.findAll({
-      where: {
-        postPostId: req.params.post_id,
-      },
-    });
-    res.status(200).send(allComments);
-  } catch (e) {
-    console.log(e);
-    res.status(404).send("Not Found");
+route.get('/posts', async(req, res) => {
+
+  if(isNaN(parseInt(req.query))){
+    return res.status(400).send({
+      error : "need postId to to find the comment"
+    })
+   }
+   const postComment = await commentOfPost(req.query)
+   res.status(200).send(postComment)
+})
+
+route.post('/', async (req, res) => {
+
+  const {userId, title, body, postId} = req.body
+
+  if((!userId) || (!title) || (!body) || (!postId)){
+    return res.status(400).send({ error : "Need userId, title, body, postId to create a comment"})
   }
-});
+
+  const comment = await addComment(userId, title, body, postId)
+  res.status(200).send(comment)
+})
+
 
 module.exports = {
-  commentsRoute:route
+  commentsRoute: route
 }
