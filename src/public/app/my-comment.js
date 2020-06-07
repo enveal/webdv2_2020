@@ -1,7 +1,7 @@
 function loadMyComments() {
     const userId = JSON.parse(window.localStorage.user).id
-  
     $.get(`/api/comments/users?userId=${userId}`, (posts) => {
+      console.log("loadmycomment")
       for (let p of posts) {
         console.log('working fine')
         $('#posts-container').append(

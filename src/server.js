@@ -12,7 +12,7 @@ app.use('/', express.static(__dirname + '/public'))
 
 app.use('/api/users', usersRoute)
 app.use('/api/posts', postsRoute)
-app.use('posts/comments', commentsRoute)
+app.use('/api/comments', commentsRoute )
 
 db.sync()
   .then(() => {

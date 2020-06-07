@@ -5,12 +5,13 @@ const { commentOfPost, commentOfUser, addComment} = require('../../controllers/c
 const route = Router()
 
 route.get('/users', async( req, res) => {
-  
-  // if(isNaN(parseInt(req.query))){
-  //  return res.status(400).send({
-  //    error : "need userId to to find the comment"
-  //  })
-  // }
+  const userId = req.query.userId;
+  //if(isNaN(parseInt(req.query))){
+    if(isNaN(userId)){
+   return res.status(400).send({
+     error : "need userId to to find the comment"
+   })
+  }
   const userComment = await commentOfUser(req.query)
   res.status(200).send(userComment)
 })
