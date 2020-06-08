@@ -1,5 +1,5 @@
 function myPosts() {
-    let userId = JSON.parse(window.localStorage.user).id
+    const userId = JSON.parse(window.localStorage.user).id
 
     $.get(`/api/posts?userId=${userId}`, (posts) => {
       for (let p of posts) {
