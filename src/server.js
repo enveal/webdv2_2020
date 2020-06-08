@@ -9,6 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/', express.static(__dirname + '/public'))
+const PORT = process.env.PORT || 4444
 
 app.use('/api/users', usersRoute)
 app.use('/api/posts', postsRoute)
@@ -16,8 +17,8 @@ app.use('/api/comments', commentsRoute )
 
 db.sync()
   .then(() => {
-    app.listen(8383, () => {
-      console.log('server started on http://localhost:8383')
+    app.listen(PORT, () => {
+      console.log(`started on http://localhost:${PORT}`)
     })
   })
   .catch((err) => {
