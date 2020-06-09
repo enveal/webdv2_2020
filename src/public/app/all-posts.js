@@ -50,7 +50,7 @@ function loadPosts() {
               <h5 class="card-title">${p.title}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${p.user.username}</h6>
               <p class="card-text">
-                ${p.body.substr(0, 200)}<span id"dots">...</span><span id ="more" style="display:none;">$${p.body.substr(200,p.body.length)}</span>
+                ${p.body}<span id"dots">...</span><span id ="more" style="display:none;">$${p.body.substr(200,p.body.length)}</span>
                 <a href="#">read more</a>
               </p>
               <a href="#" class="card-link" onClick=myFunc(${p.id})>Comment</a>

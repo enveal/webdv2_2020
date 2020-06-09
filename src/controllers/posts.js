@@ -9,6 +9,13 @@ async function createNewPost(userId, title, body) {
 
   return post
 }
+async function getPostsbyUsername(id){
+  return await Posts.findAll({
+    where: {userId: id},  
+    include:[Users]
+      })
+  }
+  
 
 /**
  * showAllPosts({username: ''})
@@ -25,6 +32,7 @@ async function findAllPosts(query) {
 
 module.exports = {
   createNewPost,
+  getPostsbyUsername,
   findAllPosts
 }
 
