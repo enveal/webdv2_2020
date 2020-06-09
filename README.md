@@ -20,13 +20,17 @@ flush privileges;
 ## Project Structure
 
 ### Backend (Server)
+
 ```shell
 src
-├── controllers         # functions to connect routes to db operations
-├── db                  # db connection and model definitions
-├── public              # html/js/css files for static part of site
-└── routes              # express middlewares (route wise)
+├───controllers		# functions to connect routes to db operations
+├───db			# db connection and model definitions
+├───public		# html/js/css files for static part of site
+├───routes		# express middlewares (route wise)				
+└───utils		# username generation function
+
 ```
+
 
 ### Frontend (Client Side Code)
 
@@ -42,7 +46,7 @@ src/public
 │   ├── Muli-Italic.woff2
 │   ├── Muli.woff2
 │   └── muli.css
-├── index.html                              # first / home page
+├── index.html                              # first home page
 └── js                                      # js libraries we are using
     ├── bootstrap.js
     ├── jquery-3.4.1.js

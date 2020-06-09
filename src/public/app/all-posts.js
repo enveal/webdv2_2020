@@ -53,7 +53,7 @@ function loadPosts() {
                 ${p.body.substr(0, 200)}<span id"dots">...</span><span id ="more" style="display:none;">$${p.body.substr(200,p.body.length)}</span>
                 <a href="#">read more</a>
               </p>
-              <a href="#" class="card-link" data-component="comment" post-component=${p.id}>Comment</a>
+              <a href="#" class="card-link" onClick=myFunc(${p.id})>Comment</a>
               <a href="#" class="card-link">Like</a>
             </div>
           </div>
@@ -65,12 +65,12 @@ function loadPosts() {
   })
  
 }
-function myfunc(x){
+function myFunc(x){
   console.log(x)
-   let commentUrl = `/components/${$(event.target).attr('data-component')}.html`
-             console.log(commentUrl)
+   let commentUrl = `/components/comment.html`
+             //console.log(commentUrl)
              $('#content').load(commentUrl) 
-             window.localstorage.postid=JSON.stringify(x)
+             window.localStorage.postid=JSON.stringify(x)
 }
 
 
