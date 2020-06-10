@@ -16,15 +16,14 @@ route.get('/users', async( req, res) => {
   res.status(200).send(userComment)
 })
 
-route.get('/posts', async(req, res) => {
+route.get("/posts/:id", async function (req, res) {
+ // console.log("===========",req.params)
+  let comments;
+  comments = await commentOfPost(req.params.id)
+  
+  console.log(comments);
+  res.status(200).send(comments)
 
-  if(isNaN(parseInt(req.query))){
-    return res.status(400).send({
-      error : "need postId to to find the comment"
-    })
-   }
-   const postComment = await commentOfPost(req.query)
-   res.status(200).send(postComment)
 })
 
 route.post('/', async (req, res) => {

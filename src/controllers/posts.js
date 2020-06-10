@@ -16,6 +16,12 @@ async function getPostsbyUsername(id){
       })
   }
   
+async function getPostsbyPid(Sid){
+    return await Posts.findAll({
+      where: {id:Sid},  
+      include:[Users]
+        })
+    }
 
 /**
  * showAllPosts({username: ''})
@@ -33,7 +39,8 @@ async function findAllPosts(query) {
 module.exports = {
   createNewPost,
   getPostsbyUsername,
-  findAllPosts
+  findAllPosts,
+  getPostsbyPid
 }
 
 /* Test Code */

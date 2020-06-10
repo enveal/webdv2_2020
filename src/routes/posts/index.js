@@ -2,7 +2,8 @@ const { Router } = require('express')
 const {
   findAllPosts,
   createNewPost,
-  getPostsbyUsername
+  getPostsbyUsername,
+  getPostsbyPid
 } = require('../../controllers/posts')
 
 const route = Router()
@@ -36,6 +37,22 @@ route.get("/:id", async function (req, res) {
   }else{
     res.status(400).send({
       error: 'No such user id or username'
+    })
+  }
+
+})
+
+route.get("/s/:id", async function (req, res) {
+  let posts;
+  posts = await getPostsbyPid(req.params.id)
+  
+  console.log(posts);
+  
+  if(posts){
+    res.status(200).send(posts)
+  }else{
+    res.status(400).send({
+      error: 'No such post found'
     })
   }
 
